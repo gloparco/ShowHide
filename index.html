@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Easy Show/Hide Using CSS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, initial-scale=1">
+
+	<style type="text/css" media="screen">
+		body
+			{
+			background: #000;
+			font-family: OpenSans;
+			}
+
+		h1
+			{
+			padding: 0;
+			margin: 20px 0;
+			font-size: 20px;
+			color: #090;
+			}
+
+		.mainContent
+			{
+			position: absolute;
+			z-index: 0;
+			top: 0;
+			left: 0;
+			width: 320px;
+			height: 480px;
+			background: #eee;
+			text-align: center;
+			}
+
+		.toggleButton
+			{
+			width: 140px;
+			height: 60px;
+			line-height: 60px;
+			margin: 0 auto;
+			background: #090;
+			color: #fff;
+			border: 3px solid rgba(255, 255, 255, 0.5);
+			border-radius: 30px;
+			text-align: center;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			-moz-user-select: -moz-none;
+			}
+
+		.toggledContent
+			{
+			position: absolute;
+			z-index: 999;
+			top: 150px;
+			left: 0;
+			width: 200px;
+			height: 300px;
+			margin-left: -3px;
+			padding: 10px;
+			background: #257;
+			color: rgba(255, 255, 255, 0.9);
+			border: 3px solid rgba(255, 255, 255, 0.5);
+			border-radius: 0 20px 20px 0;
+			-webkit-transform: translateX(0);
+			-webkit-transition: all .3s ease;
+			}
+
+		.toggledContent.hide
+			{
+			-webkit-transform: translateX(-100%);
+			}
+
+	</style>
+</head>
+<body>
+	<div id="mainContent" class="mainContent">
+		<h1>Easy Show/Hide Using CSS</h1>
+		<div id="toggleButton" class="toggleButton">Show Content</div>
+	</div>
+	<div id="toggledContent" class="toggledContent hide">This cotent area can contain anything - usually it is a menu of some sort.<br><br>The technique used involves adding or removing a class from the node you are looking to hide or show, respectively.</div>
+</body>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(event)
+		{
+		var contentHidden = true,
+			$toggleButton = document.getElementById('toggleButton'),
+			$toggledContent = document.getElementById('toggledContent');
+			// equivalent jQuery code:
+			// $toggleButton = $('#toggleButton');
+			// $toggledContent = $('#toggledContent');
+
+		// jQuery equivalent: $toggledButton.click()
+		$toggleButton.onclick = function()
+			{
+			showHideContent();
+			}
+
+		function showHideContent()
+			{
+			if (contentHidden)
+				{
+				contentHidden = false;
+				$toggledContent.className = "toggledContent";
+				// equivalent jQuery code:
+				// $toggledContent.removeClass('hide');
+				}
+			else
+				{
+				contentHidden = true;
+				$toggledContent.className = "toggledContent hide";
+				// equivalent jQuery code:
+				// $toggledContent.addClass('hide')
+				}
+			}
+		});
+</script>
+</html>
